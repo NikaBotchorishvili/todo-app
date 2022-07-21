@@ -1,5 +1,5 @@
 {% extends "main.html" %}
-
+{% load static %}
 {% block content %}
     <main>
         <div class="container">
@@ -7,11 +7,14 @@
 
             <ul>
                 {% for todo in todo_list %}
-                    <li><a href="{% url 'single' todo.id %}">{{ todo }}</a></li>
+                    <li>
+                        <a href="{% url 'single' todo.id %}">{{ todo }}</a>
+                        <a class='edit' href="{% url 'edit' todo.id %}">Edit</a>
+                    </li>
                 {% endfor %}
             </ul>
 
-             <a class="create-link" href="#">Add new item</a>
+             <a class="create-link" href="{% url 'create' %}">Add new item</a>
         </div>
 
     </main>
