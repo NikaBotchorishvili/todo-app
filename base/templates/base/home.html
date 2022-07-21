@@ -6,9 +6,9 @@
             <h1>List of things to do:</h1>
 
             <ul>
-                <li>Learn Django</li>
-                <li>Buy Groceries</li>
-                <li>Complete Homework Task</li>
+                {% for todo in todo_list %}
+                    <li><a href="{% url 'single' todo.id %}">{{ todo }}</a></li>
+                {% endfor %}
             </ul>
 
              <a class="create-link" href="#">Add new item</a>
