@@ -1,5 +1,7 @@
-from django.forms import ModelForm, Textarea, TextInput
+from django.forms import ModelForm, Textarea, TextInput, EmailInput, PasswordInput
 from .models import ToDoList
+
+from django.contrib.auth.models import User
 
 
 class TodoListForm(ModelForm):
@@ -16,5 +18,20 @@ class TodoListForm(ModelForm):
                 "rows": 7,
                 "cols": 30,
             }),
-
         }
+
+
+class LogInForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['email', "password"]
+        widgets = {
+            'email': EmailInput(attrs={
+                "placeholder": "Enter Your Email"
+            }),
+            'password': PasswordInput(attrs={
+                "placeholder": "Enter Your Password"
+            }),
+        }
+
+

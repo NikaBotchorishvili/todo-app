@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <h1 class="task-header">Login</h1>
+
+    <div class="form-container">
+        <form method="post">
+        {% csrf_token %}
+            {% for field in form %}
+                <div class="input-group">
+                    <label id="mamaco" for="{{ field.name }}">{{ field.name.capitalize }}</label>
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <button>Submit</button>
+            <p>Don't have an account? Sing up <a href="">Here</a></p>
+        </form>
+    </div>
+{% endblock content %}

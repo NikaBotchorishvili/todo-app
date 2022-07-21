@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import ToDoList
-from .forms import TodoListForm
+from .forms import TodoListForm, LogInForm
 
 
 def home(request):
@@ -42,4 +42,12 @@ def edit(request, pk):
         listItem.description = request.POST.get("description")
         listItem.save()
         return redirect('home')
+
     return render(request, "base/edit.html", context)
+
+
+def login(request):
+    form = LogInForm
+    context = {"form": form}
+
+    return render(request, "base/login.html", context)

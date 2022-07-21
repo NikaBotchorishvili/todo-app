@@ -8,8 +8,9 @@
             <ul>
                 {% for todo in todo_list %}
                     <li>
-                        <a href="{% url 'single' todo.id %}">{{ todo }}</a>
+                        <a class="title" href="{% url 'single' todo.id %}">{{ todo }}</a>
                         <a class='edit' href="{% url 'edit' todo.id %}">Edit</a>
+                        <a class="delete">Delete</a>
                     </li>
                 {% endfor %}
             </ul>

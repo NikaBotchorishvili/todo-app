@@ -19,6 +19,9 @@ header a{
     color: white;
 }
 
+header .login{
+}
+
 /* Header Styles End */
 
 main{
@@ -55,13 +58,16 @@ main .container ul{
     gap:10px;
 }
 
-main .container ul li a{
+main .container ul li .title{
     color: white;
     margin-right: 10px;
 }
 
-.edit{
-  color: yellow !important;
+main .container ul li .edit{
+  color: yellow;
+}
+main .container ul li .delete{
+    color: red;
 }
 
 main .container .create-link{
