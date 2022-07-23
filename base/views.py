@@ -76,9 +76,20 @@ def register(request):
     form = RegisterForm
     context = {"form": form}
 
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+            login(request, user)
+            return redirect("home")
     return render(request, "base/singup.html", context)
 
 
 def UserLogout(request):
     logout(request)
     return redirect('home')
+
+
