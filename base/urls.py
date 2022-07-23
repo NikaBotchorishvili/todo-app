@@ -10,5 +10,7 @@ urlpatterns = [
 
     path("login/", views.UserLogin, name="login_page"),
     path("register/", views.register, name="register"),
-    path("logout/", views.UserLogout, name="logout")
+    path("logout/", views.UserLogout, name="logout"),
+
+    path("profile/<int:pk>", views.profile, name="profile"),
 ]

@@ -47,3 +47,5 @@ class RegisterForm(ModelForm):
             "email": EmailInput(attrs={"placeholder": "Enter your email"}),
             "password": PasswordInput(attrs={"placeholder": "Enter your password"}),
         }
+
+

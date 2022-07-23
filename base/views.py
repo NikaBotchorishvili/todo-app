@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import ToDoList
+from .models import ToDoList, Profile
 from .forms import TodoListForm, LogInForm, RegisterForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
@@ -93,3 +93,7 @@ def UserLogout(request):
     return redirect('home')
 
 
+def profile(request, pk):
+
+    context = {}
+    return render(request, "base/profile.html", context)
