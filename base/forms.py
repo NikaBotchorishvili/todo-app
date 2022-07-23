@@ -35,3 +35,15 @@ class LogInForm(ModelForm):
         }
 
 
+class RegisterForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ["username", "first_name", "last_name", "email", "password"]
+
+        widgets = {
+            "username": TextInput(attrs={"placeholder": 'Enter your username'}),
+            "first_name": TextInput(attrs={"placeholder": 'Enter your firstname'}),
+            "last_name": TextInput(attrs={"placeholder": 'Enter your lastname'}),
+            "email": EmailInput(attrs={"placeholder": "Enter your email"}),
+            "password": PasswordInput(attrs={"placeholder": "Enter your password"}),
+        }

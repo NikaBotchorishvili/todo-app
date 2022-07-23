@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <h1 class="task-header">Login</h1>
+    <h1 class="task-header">Singup</h1>
 
     <div class="form-container">
         <form method="post">
@@ -14,7 +14,7 @@
                 </div>
             {% endfor %}
             <button>Submit</button>
-            <p>Don't have an account? Sing up <a href="{% url 'register' %}">Here</a></p>
+            <p>Already have an account? Login <a href="{% url 'login' %}">Here</a></p>
         </form>
     </div>
 {% endblock content %}

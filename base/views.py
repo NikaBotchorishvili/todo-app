@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import ToDoList
-from .forms import TodoListForm, LogInForm
+from .forms import TodoListForm, LogInForm, RegisterForm
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.models import User
+from django.contrib import messages
 
 
 def home(request):
@@ -46,8 +49,36 @@ def edit(request, pk):
     return render(request, "base/edit.html", context)
 
 
-def login(request):
+def UserLogin(request):
     form = LogInForm
     context = {"form": form}
 
+    if request.method == "POST":
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+
+        try:
+            user = User.objects.get(email=email)
+        except:
+            messages.error(request, "username with that email doesn't exist")
+
+            user = authenticate(request, email=email, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect("home")
+        else:
+            messages.error(request, "invalid password")
     return render(request, "base/login.html", context)
+
+
+def register(request):
+    form = RegisterForm
+    context = {"form": form}
+
+    return render(request, "base/singup.html", context)
+
+
+def UserLogout(request):
+    logout(request)
+    return redirect('home')
