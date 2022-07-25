@@ -11,5 +11,5 @@ class ToDoList(models.Model):
 
 
 class Profile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="profile")
-    description = models.TextField(null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="profile", null=True)
+    description = models.TextField(null=False, default="", blank=True)

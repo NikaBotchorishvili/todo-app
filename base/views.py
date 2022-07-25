@@ -78,13 +78,21 @@ def register(request):
 
     if request.method == "POST":
         form = RegisterForm(request.POST)
-
         if form.is_valid():
             user = form.save(commit=False)
             user.username = user.username.lower()
+
             user.save()
             login(request, user)
+            prof = Profile
+            prof.objects.create(
+                user=user,
+                description=""
+            )
+
             return redirect("home")
+        else:
+            messages.error(request)
     return render(request, "base/singup.html", context)
 
 
@@ -94,6 +102,15 @@ def UserLogout(request):
 
 
 def profile(request, pk):
+    user_profile = Profile.objects.get(user=pk)
+    context = {"profile": user_profile}
 
-    context = {}
     return render(request, "base/profile.html", context)
+
+
+def delete(request, pk):
+    item = ToDoList.objects.get(id=pk)
+
+    item.delete()
+
+    return redirect('home')

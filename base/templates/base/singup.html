@@ -5,7 +5,7 @@
     <h1 class="task-header">Singup</h1>
 
     <div class="form-container">
-        <form method="post">
+        <form method="post" action="">
         {% csrf_token %}
             {% for field in form %}
                 <div class="input-group">

@@ -10,7 +10,7 @@
                     <li>
                         <a class="title" href="{% url 'single' todo.id %}">{{ todo }}</a>
                         <a class='edit' href="{% url 'edit' todo.id %}">Edit</a>
-                        <a class="delete">Delete</a>
+                        <a class="delete" href="">Delete</a>
                     </li>
                 {% endfor %}
             </ul>

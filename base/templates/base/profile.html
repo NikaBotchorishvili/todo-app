@@ -1,8 +1,14 @@
 {% extends 'main.html' %}
-
+{% load static %}
 
 {% block content %}
+    <div class="profile-container">
+        <img src="{% static 'images/avatar.png' %}">
+
+        <h1>@{{ profile.user.username }}</h1>
+
+        <p>{{ profile.description }}</p>
 
 
-
+    </div>
 {% endblock content %}

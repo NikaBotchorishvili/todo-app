@@ -127,3 +127,22 @@ main .single-container{
 }
 
 /* Create Styles End */
+
+/* Profile Styles Start */
+
+.profile-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 100px;
+    gap: 10px;
+}
+
+.profile-container img{
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+/* Profile Styles End */
