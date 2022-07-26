@@ -1,7 +1,14 @@
 from django.forms import ModelForm, Textarea, TextInput, EmailInput, PasswordInput
-from .models import ToDoListItems, ToDoLists
+from .models import ToDoListItems, ToDoLists, Profile
 
 from django.contrib.auth.models import User
+
+
+class ProfileForm(ModelForm):
+    class Meta:
+        model: Profile
+
+        field = []
 
 
 class ToDoListForm(ModelForm):
@@ -11,6 +18,7 @@ class ToDoListForm(ModelForm):
         fields = ['name']
 
         widgets = {"name": TextInput(attrs={"placeholder": "Enter a title for the list"})}
+
 
 class TodoListItemsForm(ModelForm):
     class Meta:

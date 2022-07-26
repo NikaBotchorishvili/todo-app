@@ -8,12 +8,20 @@
             <h1><b>{{ p_list.name }}</b></h1>
         </div>
         {% for el in list %}
-            <div class="list-item">
-                <h2>{{ el.title }}</h2>
-                <small>{{ el.description }}</small>
-            </div>
+            <a href="{% url 'single' el.id %}">
+                <div class="list-item">
+                    <h2>{{ el.title }}</h2>
+                    <small>{{ el.description }}</small>
+                    <div class="actions">
+                        <a class="edit" href="{% url 'edit' el.id %}">Edit</a>
+                        <a class="delete" href="{% url 'delete' el.id %}">Delete</a>
+                    </div>
+                </div>
+            </a>
         {% endfor %}
-
+        <div class="list-bottom">
+            <p>Created: {{ p_list.created|time }}</p>
+        </div>
     </section>
 
 {% endblock content %}

@@ -1,11 +1,14 @@
 {% extends 'main.html' %}
 {% block content %}
     <main>
-        <a class="back" href="{% url 'home' %}">Go Back</a>
+        <a class="back" href="{{ request.META.HTTP_REFERER }}">Go Back</a>
         <div class="single-container">
             <h3>{{ item.title }}</h3>
 
             <p>{{ item.description }}</p>
+
+
+            <small>{{ item.created|time }}</small>
         </div>
     </main>
 {% endblock content %}

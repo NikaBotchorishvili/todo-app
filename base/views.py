@@ -34,7 +34,7 @@ def createList(request):
 
 
 def edit(request, pk):
-    listItem = ToDoListItems.objects.get(list_idt=pk)
+    listItem = ToDoListItems.objects.get(id=pk)
     form = TodoListItemsForm(instance=listItem)
 
     context = {'form': form}
@@ -42,7 +42,7 @@ def edit(request, pk):
         listItem.title = request.POST.get("title")
         listItem.description = request.POST.get("description")
         listItem.save()
-        return redirect('home')
+        return redirect(request.META.get("HTTP_REFERER"))
 
     return render(request, "base/edit.html", context)
 

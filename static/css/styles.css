@@ -31,9 +31,10 @@ main{
     background: black;
     margin: 150px auto 0px auto;
     color: white;
-    width: 450px;
-    height: 450px;
+    width: 400px;
+    height: 400px;
     padding: 20px;
+    border-radius: 10px;
 }
 
 main .container{
@@ -63,12 +64,14 @@ main .container ul li .title{
     margin-right: 10px;
 }
 
-main .container ul li .edit{
-  color: yellow;
+.edit {
+    color: #ff7e00;
 }
-main .container ul li .delete{
+
+.delete{
     color: red;
 }
+
 
 main .container .create-link{
     color: black;
@@ -87,6 +90,7 @@ main .back{
 main .single-container{
 
     display: flex;
+    justify-content: space-evenly;
     width: inherit;
     height: inherit;
     flex-direction: column;
@@ -177,8 +181,9 @@ main .single-container{
     display: flex;
     flex-direction: column;
     text-align: center;
-    margin-top: 100px;
+    margin: 100px auto 0 auto;
     gap: 30px;
+    width: max-content;
 }
 .list .list-header{
     border-bottom: 1px solid black;
@@ -191,5 +196,7 @@ main .single-container{
     font-size: 2.5rem;
 }
 
-
+.list .list-bottom p {
+    text-align: left;
+}
 /* List Styles End */

@@ -3,11 +3,13 @@
 
 {% block content %}
     <div class="profile-container">
-        <img src="{% static 'images/avatar.png' %}">
+        <img src="{{ profile.avatar.url }}">
 
         <h1>@{{ profile.user.username }}</h1>
 
         <p>{{ profile.description }}</p>
+
+        <a href="">Edit Profile</a>
     </div>
 
     {% include 'base/profile-feed.html' %}
