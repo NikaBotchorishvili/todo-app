@@ -9,7 +9,11 @@
 
         <p>{{ profile.description }}</p>
 
-        <a href="">Edit Profile</a>
+        <a href="{% url 'edit_profile' profile.id %}">Edit Profile</a>
+
+        <div>
+            <a href="{% url 'create' %}">Create</a>
+        </div>
     </div>
 
     {% include 'base/profile-feed.html' %}

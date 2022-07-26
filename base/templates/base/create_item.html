@@ -1,10 +1,11 @@
 {% extends 'main.html' %}
 
+
 {% block content %}
-   <h1 class="task-header">Modify Your Profile</h1>
+    <h1 class="task-header">Add A New Task</h1>
 
     <div class="form-container">
-        <form method="post" enctype="multipart/form-data">
+        <form method="post">
         {% csrf_token %}
             {% for field in form %}
                 <div class="input-group">

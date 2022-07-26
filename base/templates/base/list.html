@@ -3,7 +3,7 @@
 {% block content %}
 
     <section class="list">
-
+        <a href="{% url 'create-item' list_id%}">Create new item</a>
         <div class="list-header">
             <h1><b>{{ p_list.name }}</b></h1>
         </div>

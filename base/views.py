@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import ToDoListItems, Profile, ToDoLists
-from .forms import TodoListItemsForm, LogInForm, RegisterForm, ToDoListForm
+from .forms import TodoListItemsForm, LogInForm, RegisterForm, ToDoListForm, ProfileForm, ToDoListItems
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -42,7 +42,7 @@ def edit(request, pk):
         listItem.title = request.POST.get("title")
         listItem.description = request.POST.get("description")
         listItem.save()
-        return redirect(request.META.get("HTTP_REFERER"))
+        return redirect('home')
 
     return render(request, "base/edit.html", context)
 
@@ -106,7 +106,7 @@ def list(request, pk):
     # Child items of a parent list
     listItems = l.items.all()
 
-    context = {"p_list": l, "list": listItems}
+    context = {"p_list": l, "list": listItems, "list_id": pk}
     return render(request, "base/list.html", context)
 
 
@@ -126,3 +126,39 @@ def delete(request, pk):
     item.delete()
 
     return redirect('home')
+
+
+def edit_profile(request, pk):
+    user = Profile.objects.get(pk=pk)
+    form = ProfileForm(instance=user)
+
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=user)
+
+        if form.is_valid():
+            form.save()
+            return redirect("/profile/" + str(pk))
+    context = {"form": form}
+    return render(request, "base/edit_profile.html", context)
+
+
+def createListItem(request, pk):
+    l = ToDoLists.objects.get(pk=pk)
+    form = TodoListItemsForm
+
+    if request.method == "POST":
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+
+        ToDoListItems.objects.create(
+            list=l,
+            title=title,
+            description=description
+        )
+
+        return redirect('/list/' + str(pk))
+    context = {"form": form}
+
+    return render(request, "base/create_item.html", context)
+
+

@@ -4,18 +4,38 @@ from .models import ToDoListItems, ToDoLists, Profile
 from django.contrib.auth.models import User
 
 
+class ListItemForm(ModelForm):
+    class Meta:
+        model = ToDoListItems
+
+        fields = ['title', "description"]
+
+        widgets = {
+            "title": TextInput(
+                attrs={
+                    "placeholder": "Enter a title"
+                }),
+            "description": TextInput(
+                attrs={
+                    "placeholder": "Enter a description"
+                })
+            }
+
+
 class ProfileForm(ModelForm):
     class Meta:
-        model: Profile
+        model = Profile
 
-        field = []
+        fields = ["description", "avatar"]
+
+        widgets = {"description": Textarea(attrs={"placeholder": "Enter Your Bio!"})}
 
 
 class ToDoListForm(ModelForm):
     class Meta:
         model = ToDoLists
 
-        fields = ['name']
+        fields = ["name"]
 
         widgets = {"name": TextInput(attrs={"placeholder": "Enter a title for the list"})}
 
@@ -63,5 +83,3 @@ class RegisterForm(ModelForm):
             "email": EmailInput(attrs={"placeholder": "Enter your email"}),
             "password": PasswordInput(attrs={"placeholder": "Enter your password"}),
         }
-
-
