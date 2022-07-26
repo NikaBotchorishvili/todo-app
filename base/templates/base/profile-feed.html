@@ -3,7 +3,8 @@
 
  {% for el in lists %}
         <div class="feed-item">
-            <h1><a href="{% url 'list' el.id %}">{{ el.name }}</a>
+            <h1><a href="{% url 'list' el.list.id %}">{{ el.list.name }}</a></h1>
+            <small>Total Tasks: {{ el.item_counter }}</small>
         </div>
  {% endfor %}
 </section>

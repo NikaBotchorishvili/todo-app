@@ -114,8 +114,13 @@ def profile(request, pk):
     user = User.objects.get(pk=pk)
     user_profile = Profile.objects.get(user=user)
     todo_lists = user.todolist.all()
+
+    lists = []
+
+    for list in todo_lists:
+        lists.append({"list": list, "item_counter": list.items.count()})
     # todo_list_items =
-    context = {"profile": user_profile, "lists": todo_lists}
+    context = {"profile": user_profile, "lists": lists}
 
     return render(request, "base/profile.html", context)
 
