@@ -1,0 +1,9 @@
+<section class="profile-feed">
+
+
+ {% for el in lists %}
+        <div class="feed-item">
+            <h1><a href="{% url 'list' el.id %}">{{ el.name }}</a>
+        </div>
+ {% endfor %}
+</section>

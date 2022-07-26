@@ -146,3 +146,50 @@ main .single-container{
 }
 
 /* Profile Styles End */
+
+/* Profile Feed Styles Start */
+
+.profile-feed{
+    margin:50px auto 0 auto ;
+    text-align: center;
+}
+
+.profile-feed .feed-item h1 a{
+    color: red;
+
+}
+
+.profile-feed .feed-item{
+    padding: 20px 0;
+    border-radius: 20px;
+    box-shadow: 2px 2px 4px black;
+    margin: 0 auto;
+    border: 1px solid black;
+    width: 50vw;
+}
+
+
+/* Profile Feed Styles End */
+
+/* List Styles Start */
+
+.list{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 100px;
+    gap: 30px;
+}
+.list .list-header{
+    border-bottom: 1px solid black;
+    width: max-content;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.list .list-header h1{
+    color: red;
+    font-size: 2.5rem;
+}
+
+
+/* List Styles End */

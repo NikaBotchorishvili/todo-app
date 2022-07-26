@@ -8,7 +8,7 @@
         <h1>@{{ profile.user.username }}</h1>
 
         <p>{{ profile.description }}</p>
-
-
     </div>
+
+    {% include 'base/profile-feed.html' %}
 {% endblock content %}

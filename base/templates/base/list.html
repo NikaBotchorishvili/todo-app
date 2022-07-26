@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <section class="list">
+
+        <div class="list-header">
+            <h1><b>{{ p_list.name }}</b></h1>
+        </div>
+        {% for el in list %}
+            <div class="list-item">
+                <h2>{{ el.title }}</h2>
+                <small>{{ el.description }}</small>
+            </div>
+        {% endfor %}
+
+    </section>
+
+{% endblock content %}
