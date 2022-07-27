@@ -163,8 +163,13 @@ main .single-container{
 
 }
 
+.profile-feed .feed-item .about-list{
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+}
 .profile-feed .feed-item{
-    padding: 20px 0;
+    padding: 20px 10px;
     border-radius: 20px;
     box-shadow: 2px 2px 4px black;
     margin: 0 auto;

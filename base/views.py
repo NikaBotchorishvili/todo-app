@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import ToDoListItems, Profile, ToDoLists
-from .forms import TodoListItemsForm, LogInForm, RegisterForm, ToDoListForm, ProfileForm, ToDoListItems
+from .forms import TodoListItemsForm, LogInForm, RegisterForm, ToDoListForm, ProfileForm, ToDoListItems, TodoListItemsCreate
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -41,6 +41,15 @@ def edit(request, pk):
     if request.method == "POST":
         listItem.title = request.POST.get("title")
         listItem.description = request.POST.get("description")
+
+        completed_input = request.POST.get("completed")
+
+        if completed_input == "on":
+            completed = True
+        else:
+            completed = False
+
+        listItem.completed = completed
         listItem.save()
         return redirect('home')
 
@@ -114,12 +123,25 @@ def profile(request, pk):
     user = User.objects.get(pk=pk)
     user_profile = Profile.objects.get(user=user)
     todo_lists = user.todolist.all()
+    todo_lists_items = []
 
+    trues = 0
     lists = []
 
     for list in todo_lists:
-        lists.append({"list": list, "item_counter": list.items.count()})
-    # todo_list_items =
+
+        todo_lists_items .append( ToDoListItems.objects.get(list=list))
+
+        for item in todo_lists_items:
+            if item.completed:
+                trues += 1
+        lists.append({
+            "list": list,
+            "item_counter": list.items.count(),
+            "completed_counter": trues,
+            "tasks_left": list.items.count() - trues
+        })
+
     context = {"profile": user_profile, "lists": lists}
 
     return render(request, "base/profile.html", context)
@@ -149,7 +171,7 @@ def edit_profile(request, pk):
 
 def createListItem(request, pk):
     l = ToDoLists.objects.get(pk=pk)
-    form = TodoListItemsForm
+    form = TodoListItemsCreate()
 
     if request.method == "POST":
         title = request.POST.get("title")

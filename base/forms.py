@@ -1,6 +1,6 @@
-from django.forms import ModelForm, Textarea, TextInput, EmailInput, PasswordInput
+from django.forms import ModelForm, Textarea, TextInput, EmailInput, PasswordInput, CheckboxInput
 from .models import ToDoListItems, ToDoLists, Profile
-
+from django.contrib.admin import register
 from django.contrib.auth.models import User
 
 
@@ -43,7 +43,25 @@ class ToDoListForm(ModelForm):
 class TodoListItemsForm(ModelForm):
     class Meta:
         model = ToDoListItems
-        fields = ['title', 'description']
+        fields = ['title', 'description', 'completed']
+        widgets = {
+            'title': TextInput(attrs={
+                "placeholder": 'Enter Todo item Title'
+            }),
+
+            'description': Textarea(attrs={
+                'placeholder': "Enter A Description For Your task",
+                "rows": 7,
+                "cols": 30,
+            }),
+            "completed": CheckboxInput
+        }
+
+
+class TodoListItemsCreate(TodoListItemsForm):
+    class Meta:
+        model = ToDoListItems
+        fields = ["title", 'description']
         widgets = {
             'title': TextInput(attrs={
                 "placeholder": 'Enter Todo item Title'
